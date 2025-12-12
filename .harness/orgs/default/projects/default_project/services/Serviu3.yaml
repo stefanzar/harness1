@@ -1,0 +1,5 @@
+service:
+  name: Serviu3
+  identifier: Serviu3
+  orgIdentifier: default
+  projectIdentifier: default_project
