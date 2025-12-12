@@ -6,64 +6,37 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: stagiu4
-        identifier: stagiu4
+        name: Stagiu5
+        identifier: Stagiu5
         description: ""
-        type: Deployment
+        type: CI
         spec:
-          deploymentType: Ssh
-          service:
-            serviceRef: Serviu3
-          environment:
-            environmentRef: Mediu1
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: Infra1
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          infrastructure:
+            type: VM
+            spec:
+              type: Pool
+              spec:
+                poolName: piscina2
+                harnessImageConnectorRef: account.harnessImage
+                os: Linux
           execution:
             steps:
               - step:
-                  name: Deploy
-                  identifier: Deploy
-                  timeout: 10m
-                  strategy:
-                    repeat:
-                      items: <+stage.output.hosts>
-                  template:
-                    templateRef: account.Default_Install_Jar_Bash
-                    templateInputs:
-                      type: Command
-                      spec:
-                        environmentVariables:
-                          - name: DestinationDirectory
-                            type: String
-                            value: $HOME/<+service.name>/<+env.name>
-                          - name: WorkingDirectory
-                            type: String
-                            value: $HOME/<+service.name>/<+env.name>/tomcat/bin
-            rollbackSteps:
-              - step:
-                  name: Rollback
-                  identifier: Deploy
-                  timeout: 10m
-                  strategy:
-                    repeat:
-                      items: <+stage.output.hosts>
-                  template:
-                    templateRef: account.Default_Install_Jar_Bash
-                    templateInputs:
-                      type: Command
-                      spec:
-                        environmentVariables:
-                          - name: DestinationDirectory
-                            type: String
-                            value: $HOME/<+service.name>/<+env.name>
-                          - name: WorkingDirectory
-                            type: String
-                            value: $HOME/<+service.name>/<+env.name>/tomcat/bin
-        tags: {}
-        failureStrategies:
-          - onFailure:
-              errors:
-                - AllErrors
-              action:
-                type: StageRollback
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: hostname
+  properties:
+    ci:
+      codebase:
+        connectorRef: Git
+        repoName: harness1
+        build: <+input>
