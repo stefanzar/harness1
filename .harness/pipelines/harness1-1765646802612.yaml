@@ -19,12 +19,14 @@ pipeline:
                   spec:
                     shell: Sh
                     command: echo "Welcome to Harness CI"
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Docker
-            spec: {}
+          infrastructure:
+            type: VM
+            spec:
+              type: Pool
+              spec:
+                poolName: piscina
+                harnessImageConnectorRef: account.harnessImage
+                os: Linux
   properties:
     ci:
       codebase:
