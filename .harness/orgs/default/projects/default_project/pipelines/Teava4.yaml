@@ -34,6 +34,13 @@ pipeline:
                 poolName: piscina4
                 harnessImageConnectorRef: account.harnessImage
                 os: Linux
+        when:
+          pipelineStatus: All
+        failureStrategies:
+          - onFailure:
+              errors: []
+              action:
+                type: Ignore
   properties:
     ci:
       codebase:
