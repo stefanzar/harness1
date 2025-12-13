@@ -17,14 +17,6 @@ pipeline:
             override: true
           buildIntelligence:
             enabled: true
-          infrastructure:
-            type: VM
-            spec:
-              type: Pool
-              spec:
-                poolName: piscina2
-                harnessImageConnectorRef: account.harnessImage
-                os: Linux
           execution:
             steps:
               - step:
@@ -34,6 +26,13 @@ pipeline:
                   spec:
                     shell: Sh
                     command: date
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: account.harnessImage
   properties:
     ci:
       codebase:
