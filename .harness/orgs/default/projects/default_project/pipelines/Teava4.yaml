@@ -30,9 +30,8 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Docker
-            spec:
-              harnessImageConnectorRef: account.harnessImage
+            type: Cloud
+            spec: {}
   properties:
     ci:
       codebase:
