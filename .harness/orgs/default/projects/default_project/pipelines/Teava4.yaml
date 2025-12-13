@@ -26,12 +26,14 @@ pipeline:
                   spec:
                     shell: Sh
                     command: date
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
+          infrastructure:
+            type: VM
+            spec:
+              type: Pool
+              spec:
+                poolName: piscina4
+                harnessImageConnectorRef: account.harnessImage
+                os: Linux
   properties:
     ci:
       codebase:
