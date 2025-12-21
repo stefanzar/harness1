@@ -4,38 +4,41 @@ pipeline:
   projectIdentifier: sz
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: GitConect
-        repoName: harnesscd-example-apps
-        build: <+input>
   stages:
     - stage:
-        name: Bloc5
-        identifier: Bloc5
+        name: INfra5
+        identifier: INfra5
         description: ""
-        type: CI
+        type: IACM
         spec:
-          cloneCodebase: true
-          caching:
-            enabled: true
-            override: true
-          buildIntelligence:
-            enabled: true
           platform:
-            os: Windows
+            os: Linux
             arch: Amd64
           runtime:
             type: Docker
-            spec:
-              harnessImageConnectorRef: account.harnessImage
+            spec: {}
+          workspace: Spatiu5
           execution:
             steps:
               - step:
-                  type: Run
-                  name: Run_1
-                  identifier: Run_1
+                  type: IACMOpenTofuPlugin
+                  name: init
+                  identifier: init
+                  timeout: 10m
                   spec:
-                    shell: Powershell
-                    command: hostname
+                    command: init
+              - step:
+                  type: IACMOpenTofuPlugin
+                  name: plan
+                  identifier: plan
+                  timeout: 10m
+                  spec:
+                    command: plan
+              - step:
+                  type: IACMOpenTofuPlugin
+                  name: apply
+                  identifier: apply
+                  timeout: 10m
+                  spec:
+                    command: apply
+        tags: {}
