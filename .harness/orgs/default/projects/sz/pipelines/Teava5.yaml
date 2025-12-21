@@ -27,11 +27,9 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Cloud
+            type: Docker
             spec:
-              size: small
-              imageSpec:
-                imageName: ubuntu-latest
+              harnessImageConnectorRef: account.harnessImage
           execution:
             steps:
               - step:
