@@ -39,3 +39,5 @@ pipeline:
                   spec:
                     shell: Sh
                     command: hostname
+        delegateSelectors:
+          - docker-delegate-2
