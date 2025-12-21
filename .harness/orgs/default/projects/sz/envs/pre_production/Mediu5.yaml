@@ -1,0 +1,8 @@
+environment:
+  name: Mediu5
+  identifier: Mediu5
+  description: ""
+  tags: {}
+  type: PreProduction
+  orgIdentifier: default
+  projectIdentifier: sz
