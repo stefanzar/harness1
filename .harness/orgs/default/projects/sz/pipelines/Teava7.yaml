@@ -37,5 +37,5 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    shell: Powershell
+                    shell: Bash
                     command: hostname
